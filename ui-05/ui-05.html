@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Import TailwindCSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Import Font Vazir -->
+        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+
+        <!-- Title Window -->
+        <title>تمرین جلسه پنجم: یک فرم ثبت نام برای یک وب سایت یا اپلیکیشن آموزشی</title>
+    </head>
+    <style>
+        body {
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            height: 100%;
+            width: 100%;
+        }
+        input,
+        select {
+            outline: none;
+        }
+        input[type='checkbox'] {
+            appearance: none;
+            border-radius: 9999px;
+            border: 1px solid rgb(211, 211, 211);
+        }
+        input[type='checkbox']:checked::after {
+            background-color: rgb(10, 157, 255);
+            border-radius: 9999px;
+            position: absolute;
+            margin-right: 3px;
+            margin-top: 3px;
+            content: '';
+            height: 8px;
+            width: 8px;
+        }
+    </style>
+    <body class="bg-white">
+
+        <!-- Main -->
+        <main class="p-6 flex items-center justify-center w-full h-full">
+            <!-- Form: Signup -->
+            <form id="signupForm" class="w-full max-w-lg space-y-5 h-full">
+                <div class="mb-2">
+                    <h2 class="text-xl font-[600] text-gray-700">فرم ثبت ‌نام</h2>
+                    <p class="text-sm text-gray-500">کاربر گرامی، لطفا اطلاعات را با دقت ثبت کنید.</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700" for="fullname">نام و نام خانوادگی</label>
+                    <input type="text" name="fullname" id="fullname" class="mt-1 w-full py-2 px-4 border border-gray-200 rounded-md focus:border-blue-400">
+                    <p class="text-red-500 text-sm font-[500] mt-1 hidden"></p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700" for="email">ایمیل</label>
+                    <input type="email" name="email" id="email" class="mt-1 w-full py-2 px-4 border border-gray-200 rounded-md focus:border-blue-400">
+                    <p class="text-red-500 text-sm font-[500] mt-1 hidden"></p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700" for="phone">شماره موبایل</label>
+                    <input type="tel" name="phone" id="phone" class="mt-1 w-full py-2 px-4 border border-gray-200 rounded-md focus:border-blue-400">
+                    <p class="text-red-500 text-sm font-[500] mt-1 hidden"></p>
+                </div>
+                <div class="flex items-center justify-between gap-2">
+                    <div class="w-full">
+                        <label class="block text-sm font-medium text-gray-700" for="password">رمز عبور</label>
+                        <input type="password" name="password" id="password" class="mt-1 w-full py-2 px-4 border border-gray-200 rounded-md focus:border-blue-400">
+                        <p class="text-red-500 text-sm font-[500] mt-1 hidden"></p>
+                    </div>
+                    <div class="w-full">
+                        <label class="block text-sm font-medium text-gray-700" for="confirmPassword">تکرار رمز عبور</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" class="mt-1 w-full py-2 px-4 border border-gray-200 rounded-md focus:border-blue-400">
+                        <p class="text-red-500 text-sm font-[500] mt-1 hidden"></p>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">جنسیت</label>
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2">
+                            <input type="radio" name="gender" id="genderM" value="male" checked>
+                            <label for="genderM" class="text-base text-gray-700">مرد</label>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="radio" name="gender" id="genderF" value="female">
+                            <label for="genderF" class="text-base text-gray-700">زن</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700" for="city">شهر محل سکونت</label>
+                    <select name="city" id="city" class="mt-1 w-full py-2 px-4 border border-gray-200 rounded-md focus:border-blue-400">
+                        <option value="">انتخاب شهر</option>
+                        <option>آمل</option>
+                        <option>محمودآباد</option>
+                        <option>ساری</option>
+                    </select>
+                    <p class="text-red-500 text-sm font-[500] mt-1 hidden"></p>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center">
+                        <input type="checkbox" name="terms" id="terms" class="h-4 w-4 text-blue-600">
+                        <label for="terms" class="mr-2 text-sm text-gray-700">قوانین را می ‌پذیرم.</label>
+                    </div>
+                    <p class="text-red-500 text-sm font-[500] mt-1 hidden" id="termsError"></p>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md text-lg hover:bg-blue-600 transition" id="btnSubmit">ثبت نام</button>
+            </form>
+        </main>
+
+
+        <!-- Alert -->
+        <div class="alert hidden items-center gap-2 w-[300px] m-auto bg-white border border-gray-200 shadow-lg rounded-full py-4 px-5 fixed top-[20px] left-0 right-0" id="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-500">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>              
+            <h4>فرم با موفقیت ارسال شد!</h4>
+        </div>
+        
+
+        <!-- Script -->
+        <script>
+            document.getElementById('signupForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                let hasError = false;
+
+                this.querySelectorAll('p.text-red-500').forEach(el => {
+                    el.textContent = '';
+                    el.classList.add('hidden');
+                });
+
+                const fullname = this.fullname;
+                const email = this.email;
+                const phone = this.phone;
+                const password = this.password;
+                const confirmPassword = this.confirmPassword;
+                const city = this.city;
+                const terms = this.terms;
+
+                const alert = document.getElementById('alert');
+
+                if (fullname.value.trim() === '') {
+                    showError(fullname, 'نام و نام خانوادگی را وارد کنید.');
+                    hasError = true;
+                }
+                if (!email.value.includes('@')) {
+                    showError(email, 'ایمیل معتبر وارد کنید.');
+                    hasError = true;
+                }
+                if (!/^\d{10,}$/.test(phone.value)) {
+                    showError(phone, 'شماره موبایل معتبر وارد کنید.');
+                    hasError = true;
+                }
+                if (password.value.length < 6 || confirmPassword.value.length < 6) {
+                    showError(password, 'رمز عبور باید حداقل ۶ کاراکتر باشد.');
+                    showError(confirmPassword, 'رمز عبور باید حداقل ۶ کاراکتر باشد.');
+                    hasError = true;
+                }
+                if (confirmPassword.value !== password.value) {
+                    showError(confirmPassword, 'رمز عبور مطابقت ندارد.');
+                    hasError = true;
+                }
+                if (city.value === '') {
+                    showError(city, 'شهر را انتخاب کنید.');
+                    hasError = true;
+                }
+                if (!terms.checked) {
+                    const termsError = document.getElementById('termsError');
+                    termsError.textContent = 'باید قوانین را بپذیرید.';
+                    termsError.classList.remove('hidden');
+                    hasError = true;
+                }
+                if (!hasError) {
+                    alert.classList.add('!flex');
+                    setTimeout(() => {
+                        alert.classList.remove('!flex');
+                    }, 4000)
+                    this.reset();
+                }
+            });
+
+            function showError(input, message) {
+                const errorEl = input.parentElement.querySelector('p');
+                errorEl.textContent = message;
+                errorEl.classList.remove('hidden');
+            }
+        </script>
+    </body>
+</html>
